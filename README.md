@@ -21,4 +21,4 @@ npm run lint
 ```
 
 
-See [Ссылка](weather-app-bd539.firebaseapp.com).
+See [Ссылка](https://weather-app-bd539.firebaseapp.com/).

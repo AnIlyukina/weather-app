@@ -4,7 +4,7 @@
        <div class="weather__search-box">
       <input 
         type="text" 
-        placeholder= "Введите город" 
+        placeholder= "А в Тайланде сейчас жарко" 
         class="weather__search-bar"
         v-model='city'
         @keypress="getWeather"
