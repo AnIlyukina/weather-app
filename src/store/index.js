@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     weather:{},
-    loading: false
+    loading: false, 
+    errorMessage: false,
   },
   mutations: {
     setWeather: (state, payload) => {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     setLoading: (state,payload) =>{
       state.loading = payload
+    },
+    setErrorMessage: (state, payload) =>{
+      state.errorMessage = payload
     }
   },
   actions: {
@@ -22,12 +26,17 @@ export default new Vuex.Store({
       try{
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${payload}&appid=a96fe8ba426299461ac1ef45c727fe48&units=metric`)
         if (response.status === 200){
+          dispatch('setErrorMessage', false)
           const data = await response.json()
           commit('setWeather', data)
         }
+        else {
+          dispatch('setErrorMessage', true)
+        }
       }
-      catch(e) {
-       console.log(e)
+      catch(error) {
+      console.log(error)
+       dispatch('setErrorMessage', true)
       }
       finally {
         dispatch('setLoading', false)
@@ -36,6 +45,9 @@ export default new Vuex.Store({
     setLoading: (context, payload) =>{
       context.commit('setLoading', payload)
     },
+    setErrorMessage: (context, payload) =>{
+      context.commit('setErrorMessage', payload)
+    }
   },
   modules: {},
 });

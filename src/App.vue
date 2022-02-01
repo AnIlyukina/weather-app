@@ -1,6 +1,8 @@
 <template>
     <main class="weather">
-    <loader v-if="loading"/>
+    <Loader v-if="loading"/>
+    <ErrorMessage v-if="errorMessage"/>
+
     <div class="weather__block">
        <div class="weather__search-box">
       <input 
@@ -29,11 +31,13 @@
 
 import {mapActions, mapState} from 'vuex';
 import Loader from './components/Loader.vue'
+import ErrorMessage from './components/ErrorMessage.vue'
 
 export default {
   name: "App",
   components:{
-    Loader
+    Loader,
+    ErrorMessage
   },
   data(){
     return {
@@ -41,7 +45,7 @@ export default {
     }
   },
   computed: {
-   ...mapState(['weather', 'loading']), 
+   ...mapState(['weather', 'loading' , 'errorMessage']), 
   },
   methods: {
     ...mapActions([
