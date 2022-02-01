@@ -1,5 +1,6 @@
 <template>
-    <main class = 'weather'>
+    <main class="weather">
+    <loader v-if="loading"/>
     <div class="weather__block">
        <div class="weather__search-box">
       <input 
@@ -10,7 +11,7 @@
         @keypress="getWeather"
         >
     </div>
-     <div class="weather__info" v-if="typeof weather.main != 'undefined'" > 
+     <div v-if="typeof weather.main != 'undefined'" class="weather__info"  > 
         <div class="weather__location-box">
           <div class="location"> {{weather.name}} </div>
           <div class="date"> {{dateBuilder()}} </div>
@@ -21,23 +22,26 @@
         </div>
       </div>
     </div>
-
   </main>
 </template>
 
 <script>
 
-import {mapActions, mapState} from 'vuex'
+import {mapActions, mapState} from 'vuex';
+import Loader from './components/Loader.vue'
 
 export default {
   name: "App",
+  components:{
+    Loader
+  },
   data(){
     return {
       city: ''
     }
   },
   computed: {
-   ...mapState(['weather']), 
+   ...mapState(['weather', 'loading']), 
   },
   methods: {
     ...mapActions([
@@ -75,6 +79,8 @@ export default {
 
 body{
   font-family: 'montserrat', sans-serif;
+  min-width: 320px;
+  height: 100vh;
 }
 
 .weather{
