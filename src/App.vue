@@ -1,7 +1,6 @@
 <template>
     <main class="weather">
     <Loader v-if="loading"/>
-    <ErrorMessage v-if="errorMessage"/>
 
     <div class="weather__block">
        <div class="weather__search-box">
@@ -9,10 +8,11 @@
         type="text" 
         placeholder= "А в Тайланде сейчас жарко" 
         class="weather__search-bar"
-        v-model='city'
+        v-model.trim='city'
         @keypress="getWeather"
         >
     </div>
+    <ErrorMessage v-if="errorMessage"/>
      <div v-if="typeof weather.main != 'undefined'" class="weather__info"  > 
         <div class="weather__location-box">
           <div class="location"> {{weather.name}} </div>

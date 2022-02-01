@@ -1,5 +1,5 @@
 <template>
-  <div>Данного города не содержит наша организация, попробуйте ввести еще раз</div>
+    <div class="error">Данного города не существует, возможно вы допустили ошибку в его написании. Попробуйте написать еще раз</div>
 </template>
 
 <script>
@@ -9,5 +9,11 @@ export default {
 </script>
 
 <style>
-
+.error{
+  color: red;
+  background-color: azure;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+}
 </style>

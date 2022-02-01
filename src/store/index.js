@@ -32,6 +32,7 @@ export default new Vuex.Store({
         }
         else {
           dispatch('setErrorMessage', true)
+          commit('setWeather', {})
         }
       }
       catch(error) {
